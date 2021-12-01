@@ -22,12 +22,11 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../assets/style/mixins.scss" ;
   header{
     padding: 20px;
     height: 80px;
     background-color: black;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;    
+    @include flex-between ;   
   }
 </style>
