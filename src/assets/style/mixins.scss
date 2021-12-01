@@ -3,3 +3,8 @@
   justify-content: space-between;
   align-items: center;
 }
+
+@mixin flex-center {
+  @include flex-between;
+  justify-content: center;
+}
