@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-    <Header  />
-    <Main :menu="listaFilm"/>
+    <Header @cercaFilm="cercaFilm" />
+    <Main :menu="listaFilm"
+    :ricercaFilm="ricercaFilm"/>
   </div>
 </template>
 
@@ -24,7 +25,21 @@ export default {
     return{
       apiUrl:('https://api.themoviedb.org/3/search/movie?api_key=84bd9ebc42509041ef2d7fe87c3946c6&query=ritorno+al+futuro&language=it-IT'),
 
-      listaFilm:[]
+      listaFilm:[],
+
+      filmInserito:''
+    }
+  },
+
+  computed:{
+    ricercaFilm(){
+      if(this.filmInserito === ''){
+        return this.listaFilm
+      }
+
+      return this.listaFilm.filter(film =>{
+        return film.title.toLowerCase().includes(this.filmInserito) 
+      })
     }
   },
 
@@ -39,6 +54,11 @@ export default {
         .catch(e =>{
           console.log(e);
         })
+    },
+
+    cercaFilm(nomeFilm){
+      this.filmInserito = nomeFilm;
+      console.log(nomeFilm);
     }
   },
 

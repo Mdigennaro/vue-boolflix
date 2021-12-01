@@ -7,8 +7,17 @@
     </div>
 
     <div class="h-right">
-      <input type="text" placeholder="Ricerca film">
-      <button>search</button>
+      <input 
+      type="text" 
+      placeholder="Ricerca film"
+      v-model="nomeFilm"
+      @keyup.enter="$emit('cercaFilm', nomeFilm)"
+      >
+      <button 
+      @click="$emit('cercaFilm', nomeFilm)"
+      >
+      Search
+      </button>
     </div>
 
   </header>
@@ -17,7 +26,13 @@
 
 <script>
 export default {
-  nome: "Header"
+  nome: "Header",
+
+  data(){
+    return{
+      nomeFilm:''
+    }
+  }
 }
 </script>
 

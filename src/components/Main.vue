@@ -2,7 +2,7 @@
   <main>
 
     <Compilation 
-    v-for="film in menu" 
+    v-for="film in ricercaFilm" 
     :key="film.id" 
     :film="film"
     />
@@ -17,11 +17,13 @@ export default {
   nome: "Main",
   
   props:{
-    menu: Array
+    menu: Array,
+    ricercaFilm: Array
   },
   components:{
     Compilation
   },
+
 
 }
 
