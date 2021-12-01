@@ -34,7 +34,7 @@ export default {
   computed:{
     ricercaFilm(){
       if(this.filmInserito === ''){
-        return this.listaFilm
+        return this.listaFilm;
       }
 
       return this.listaFilm.filter(film =>{
