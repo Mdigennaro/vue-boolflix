@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <Header @cercaFilm="cercaFilm" />
+    <Header @cercaFilm="cercaFilm" 
+    @selezioneGenere="selezioneGenere"
+    />
     <Main :menuFilm="listaFilm"
     :menuSerie="listaSerie"
     />
@@ -29,6 +31,8 @@ export default {
 
       apiUrlFilm:('https://api.themoviedb.org/3/search/movie'),
       apiUrlSerie:('https://api.themoviedb.org/3/search/tv'),
+
+      type:'',
       
       apiParams:{
         api_key: '84bd9ebc42509041ef2d7fe87c3946c6',
@@ -71,6 +75,12 @@ export default {
       this.getApiFilm();
       this.getApiSerie();
     },    
+
+    selezioneGenere(genere){
+      this.type = genere;
+      console.log(genere);
+    },    
+        
   },
 
   mounted(){

@@ -52,23 +52,15 @@ main{
   height: calc(100vh - 80px) ;
   background-color: gray;
   
-  .container-film{
+  .container-film, .container-serie{
     width: 100%;
     height:50%;
-    @include flex-center;
+    @include flex-between;
     overflow: hidden;
     overflow-x: scroll;
     padding: 10px;
+  
   }
   
-  .container-serie{
-    padding: 10px;
-    width: 100%;
-    background-color: aqua;
-    height: 50%;
-    @include flex-center;
-    overflow: hidden;
-    overflow-x: scroll;
-  }
 }
 </style>

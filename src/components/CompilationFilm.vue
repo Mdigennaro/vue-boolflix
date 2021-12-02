@@ -5,7 +5,7 @@
     <div class="flip-card">
       <div class="flip-card-inner">
         <div class="flip-card-front">
-          <img src="img_avatar.png" alt="Poster" style="width:300px;height:300px;">
+          <img src="img_avatar.png" alt="Poster film" style="width:300px;height:300px;">
         </div>
         <div class="flip-card-back">
 
