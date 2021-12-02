@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <Header @cercaFilm="cercaFilm" />
-    <Main :menu="listaFilm"
+    <Main :menuFilm="listaFilm"
+    :menuSerie="listaSerie"
     />
   </div>
 </template>
@@ -24,13 +25,15 @@ export default {
   data(){
     return{
       listaFilm:[],
+      listaSerie:[],
 
-      apiUrl:('https://api.themoviedb.org/3/search/movie'),
+      apiUrlFilm:('https://api.themoviedb.org/3/search/movie'),
+      apiUrlSerie:('https://api.themoviedb.org/3/search/tv'),
       
       apiParams:{
         api_key: '84bd9ebc42509041ef2d7fe87c3946c6',
         language: 'it-IT',
-        query: 'ritorno al futuro'
+        query: 'ritorno al futuro',
       },
 
       filmInserito:'',
@@ -39,11 +42,22 @@ export default {
 
 
   methods:{
-    getApi(){
-      axios.get(this.apiUrl, {params: this.apiParams})
+    getApiFilm(){
+      axios.get(this.apiUrlFilm, {params: this.apiParams})
         .then(r =>{
           this.listaFilm = r.data.results;
-          console.log(this.listaFilm);
+          console.log('film',this.listaFilm);
+        })
+        .catch(e =>{
+          console.log(e);
+        })
+    },
+
+    getApiSerie(){
+      axios.get(this.apiUrlSerie, {params: this.apiParams})
+        .then(r =>{
+          this.listaSerie = r.data.results;
+          console.log('serie',this.listaSerie);
 
         })
         .catch(e =>{
@@ -54,12 +68,14 @@ export default {
     cercaFilm(nomeFilm){
       this.apiParams.query = nomeFilm;
       console.log(nomeFilm);
-      this.getApi();
+      this.getApiFilm();
+      this.getApiSerie();
     },    
   },
 
   mounted(){
-    this.getApi();
+    this.getApiFilm();
+    this.getApiSerie();
   }
 }
 </script>

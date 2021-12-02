@@ -1,6 +1,5 @@
 <template>
-
-  <div class="film">
+  <div class="serie">
 
     <div class="flip-card">
       <div class="flip-card-inner">
@@ -9,27 +8,28 @@
         </div>
         <div class="flip-card-back">
 
-          <h1>{{film.title}}</h1>
-          <h3>{{film.original_title}}</h3>
-          <p v-if="film.original_language === 'it' "><img src="../assets/img/it.png" :alt="film.original_language"></p>
-          <p v-if="film.original_language === 'en' "><img src="../assets/img/en.png" :alt="film.original_language"></p>
-          <p v-if="film.original_language !== 'it' && film.original_language !== 'en' ">{{film.original_language}}</p>
-          <p>{{film.vote_average}}</p>
+          <h1>{{serie.name}}</h1>
+          <h3>{{serie.original_name}}</h3>
+          <p v-if="serie.original_language === 'it' "><img src="../assets/img/it.png" :alt="serie.original_language"></p>
+          <p v-if="serie.original_language === 'en' "><img src="../assets/img/en.png" :alt="serie.original_language"></p>
+          <p v-if="serie.original_language !== 'it' && serie.original_language !== 'en' ">{{serie.original_language}}</p>
+          <p>{{serie.vote_average}}</p>
 
         </div>
       </div>
     </div>
 
   </div>
-
 </template>
 
 <script>
 export default {
-  nome: "CompilationFilm",
+
+  nome: "CompilationSerie",
+
   props:{
-    film: Object
-  },
+    serie: Object
+  }
 
 }
 </script>
@@ -38,7 +38,7 @@ export default {
 @import "../assets/style/mixins.scss";
 
 
-.film{
+.serie{
   text-align: center;
   margin: 20px;
 
