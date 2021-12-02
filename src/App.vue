@@ -2,7 +2,7 @@
   <div id="app">
     <Header @cercaFilm="cercaFilm" />
     <Main :menu="listaFilm"
-    :ricercaFilm="ricercaFilm"/>
+    />
   </div>
 </template>
 
@@ -23,29 +23,24 @@ export default {
 
   data(){
     return{
-      apiUrl:('https://api.themoviedb.org/3/search/movie?api_key=84bd9ebc42509041ef2d7fe87c3946c6&query=ritorno+al+futuro&language=it-IT'),
-
       listaFilm:[],
+
+      apiUrl:('https://api.themoviedb.org/3/search/movie'),
+      
+      apiParams:{
+        api_key: '84bd9ebc42509041ef2d7fe87c3946c6',
+        language: 'it-IT',
+        query: 'ritorno al futuro'
+      },
 
       filmInserito:''
     }
   },
 
-  computed:{
-    ricercaFilm(){
-      if(this.filmInserito === ''){
-        return this.listaFilm;
-      }
-
-      return this.listaFilm.filter(film =>{
-        return film.title.toLowerCase().includes(this.filmInserito) 
-      })
-    }
-  },
 
   methods:{
     getApi(){
-      axios.get(this.apiUrl)
+      axios.get(this.apiUrl, {params: this.apiParams})
         .then(r =>{
           this.listaFilm = r.data.results;
           console.log(this.listaFilm);
@@ -57,8 +52,9 @@ export default {
     },
 
     cercaFilm(nomeFilm){
-      this.filmInserito = nomeFilm;
+      this.apiParams.query = nomeFilm;
       console.log(nomeFilm);
+      this.getApi();
     }
   },
 
