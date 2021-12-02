@@ -33,7 +33,7 @@ export default {
         query: 'ritorno al futuro'
       },
 
-      filmInserito:''
+      filmInserito:'',
     }
   },
 
@@ -55,7 +55,7 @@ export default {
       this.apiParams.query = nomeFilm;
       console.log(nomeFilm);
       this.getApi();
-    }
+    },    
   },
 
   mounted(){

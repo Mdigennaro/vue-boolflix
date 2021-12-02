@@ -35,6 +35,7 @@ main{
   min-height: calc(100vh - 80px) ;
   background-color: gray;
   @include flex-center;
+  flex-wrap: wrap;
 
 }
 </style>

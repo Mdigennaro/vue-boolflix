@@ -3,7 +3,9 @@
   <div class="film">
     <h1>{{film.title}}</h1>
     <h3>{{film.original_title}}</h3>
-    <p>{{film.original_language}}</p>
+    <p v-if="film.original_language === 'it' "><img src="../assets/img/it.png" :alt="film.original_language"></p>
+    <p v-if="film.original_language === 'en' "><img src="../assets/img/en.png" :alt="film.original_language"></p>
+    <p v-if="film.original_language !== 'it' && film.original_language !== 'en' ">{{film.original_language}}</p>
     <p>{{film.vote_average}}</p>
   </div>
 
@@ -16,31 +18,18 @@ export default {
     film: Object
   },
 
-  data(){
-    return{
-      bandieraInglese:('../assets/img/en.png'),
-      bandieraItalia:('../assets/img/it.png')
-    }
-  },
-
-  methods:{
-    
-    aBandiera(){
-      if(this.film.original_language === 'en' ){
-        this.film.original_language = this.bandieraInglese
-      }
-
-      if(this.film.original_language === 'it' ){
-        this.film.original_language = this.bandieraItalia
-      }
-    }
-  }
 }
 </script>
 
-<style>
+<style lang="scss">
 .film{
   text-align: center;
   margin: 20px;
+  
+  p{
+    img{
+      width: 20px;
+    }
+  }
 }
 </style>
