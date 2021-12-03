@@ -3,9 +3,9 @@
     <Header @cercaFilm="cercaFilm" 
     @selezioneGenere="selezioneGenere"
     />
-    <Main :menuFilm="listaFilm"
-    :menuSerie="listaSerie"
+    <Main  :listItem="movie"
     />
+    <Main :listItem="tv"/>
   </div>
 </template>
 
@@ -26,13 +26,13 @@ export default {
 
   data(){
     return{
-      listaFilm:[],
-      listaSerie:[],
+      movie:[],
+      tv:[],
 
-      apiUrlFilm:('https://api.themoviedb.org/3/search/movie'),
-      apiUrlSerie:('https://api.themoviedb.org/3/search/tv'),
+      apiUrl:'https://api.themoviedb.org/3/search/',
 
       type:'',
+      genere: '',
       
       apiParams:{
         api_key: '84bd9ebc42509041ef2d7fe87c3946c6',
@@ -46,46 +46,35 @@ export default {
 
 
   methods:{
-    getApiFilm(){
-      axios.get(this.apiUrlFilm, {params: this.apiParams})
+    getApi(type){
+      axios.get(this.apiUrl+type, {params: this.apiParams})
         .then(r =>{
-          this.listaFilm = r.data.results;
-          console.log('film',this.listaFilm);
+          this[type] = r.data.results;
+          console.log('type',this[type]);
         })
         .catch(e =>{
           console.log(e);
         })
     },
 
-    getApiSerie(){
-      axios.get(this.apiUrlSerie, {params: this.apiParams})
-        .then(r =>{
-          this.listaSerie = r.data.results;
-          console.log('serie',this.listaSerie);
-
-        })
-        .catch(e =>{
-          console.log(e);
-        })
-    },
 
     cercaFilm(nomeFilm){
       this.apiParams.query = nomeFilm;
       console.log(nomeFilm);
-      this.getApiFilm();
-      this.getApiSerie();
+      this.getApi('movie');
+      this.getApi('tv');
     },    
 
     selezioneGenere(genere){
-      this.type = genere;
-      console.log(genere);
+      this.genere = genere;
+      console.log('selezione',genere);
     },    
         
   },
 
   mounted(){
-    this.getApiFilm();
-    this.getApiSerie();
+    this.getApi('movie');
+    this.getApi('tv');
   }
 }
 </script>
@@ -95,5 +84,11 @@ export default {
 
   #app{
     min-height: 100vh;
+    background-color: gray;
+    
+    .hid{
+      display: block;
+    }
+
   }
 </style>

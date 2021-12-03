@@ -1,43 +1,34 @@
 <template>
   <main>
     
-    <div class="container-film">
+    <div class="container">
 
-      <CompilationFilm 
-      v-for="film in menuFilm" 
-      :key="film.id" 
-      :film="film"
+      <Compilation 
+      v-for="item in listItem" 
+      :key="item.id" 
+      :item="item"
       />
 
     </div>
 
-    <div class="container-serie">
-
-      <CompilationSerie 
-      v-for="serie in menuSerie" 
-      :key="serie.id" 
-      :serie="serie"
-      />
-
-    </div>
 
   </main>
 </template>
 
 <script>
-import CompilationFilm from './CompilationFilm.vue';
-import CompilationSerie from './CompilationSerie.vue';
+import Compilation from './Compilation.vue';
 
 export default {
   nome: "Main",
   
-  props:{
-    menuFilm: Array,
-    menuSerie: Array,
-  },
   components:{
-    CompilationFilm,
-    CompilationSerie
+    Compilation,
+  },
+
+
+  props:{
+    listItem: Array,
+
   },
 
 
@@ -49,13 +40,13 @@ export default {
 <style lang="scss">
 @import "../assets/style/mixins.scss";
 main{
-  height: calc(100vh - 80px) ;
-  background-color: gray;
+  height: 45%;
   
-  .container-film, .container-serie{
+  .container{
     width: 100%;
     height:50%;
     @include flex-between;
+    justify-content: flex-start;
     overflow: hidden;
     overflow-x: scroll;
     padding: 10px;

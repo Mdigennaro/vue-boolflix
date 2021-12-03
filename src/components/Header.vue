@@ -11,8 +11,8 @@
       v-model="genere" 
       @change="$emit('selezioneGenere', genere)">
         <option value="" selected>Film e Serie TV</option>
-        <option value="movie">Film</option>
-        <option value="tv">Serie TV</option>
+        <option value="film">Film</option>
+        <option value="serie">Serie TV</option>
       </select>
       <input 
       type="text" 
