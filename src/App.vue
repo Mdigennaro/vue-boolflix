@@ -4,8 +4,11 @@
     @selezioneGenere="selezioneGenere"
     />
     <Main  :listItem="movie"
+    section="Film"
     />
-    <Main :listItem="tv"/>
+    <Main :listItem="tv"
+    section="Serie Tv"
+    />
   </div>
 </template>
 
@@ -80,11 +83,11 @@ export default {
 </script>
 
 <style lang="scss">
-@import "./assets/style/generals.scss";
-
+@import './assets/style/generals.scss';
+@import '~@fontsource/roboto-condensed/index.css';
   #app{
     min-height: 100vh;
-    background-color: gray;
+    background-color: black;
     
     .hid{
       display: block;

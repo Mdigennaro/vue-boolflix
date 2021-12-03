@@ -14,16 +14,17 @@
           <p v-if="item.original_language === 'it' "><img src="../assets/img/it.png" :alt="item.original_language"></p>
           <p v-if="item.original_language === 'en' "><img src="../assets/img/en.png" :alt="item.original_language"></p>
           <p v-if="item.original_language !== 'it' && item.original_language !== 'en' ">{{item.original_language}}</p>
-          <p>{{Math.round(item.vote_average / 2)}}</p>
-          <div> 
+          <div class="star"> 
             <i
             v-for="(star, index) in 5"
             :key="index"
             class=" fa-star"
             :class="index < Math.round(item.vote_average / 2) ? 'fas' : 'far'"></i>
           </div>
+          <h5>overview</h5>
           <div class="recensione">
-            <p>{{item.overview}}</p>
+            <p v-if="item.overview === '' ">Non ancora disponibile</p>
+            <p v-else>{{item.overview}}</p>
           </div>
 
         </div>
@@ -46,17 +47,20 @@ export default {
 
 <style lang="scss">
 @import "../assets/style/mixins.scss";
-
-
+@import '~@fontsource/roboto-condensed/index.css';
+//per le stelline
 @import '~@fortawesome/fontawesome-free/css/all.min.css';
 .film{
   text-align: center;
   margin: 0 10px;
+  font-family: 'Roboto Condensed', sans-serif;
+  cursor: pointer;
+
 
   .flip-card {
     background-color: transparent;
-    width: 250px;
-    height: 278px;
+    width: 175px;
+    height: 225px;
     perspective: 1000px; 
   }
 
@@ -67,11 +71,14 @@ export default {
     text-align: center;
     transition: transform 0.6s;
     transform-style: preserve-3d;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px 0 rgb(50, 50, 50);
+    border: 2px solid goldenrod;
+    border-radius: 15px;
 
     img{
       width: 100%;
       height: 100%;
+      border-radius: 15px;
     }
   }
 
@@ -87,6 +94,7 @@ export default {
     backface-visibility: hidden;
     @include flex-center;
     flex-direction: column;
+    border-radius: 15px;
   }
 
   .flip-card-front {
@@ -99,20 +107,49 @@ export default {
     color: white;
     transform: rotateY(180deg);
     padding: 5px;
+
+    h2{
+      font-size: 15px;
+      text-transform: uppercase;
+    }
+
+    h4{
+      text-transform: uppercase;
+      font-size: 11px;
+      padding: 2px 0;
+    }
+
+    .star{
+      color: goldenrod;
+      margin: 2px 0;
+    }
+
     p{
       img{
-        width: 30px;
+        width: 20px;
+        height: 10px;
         border-radius: 2px;
       }
     }
 
+    h5{
+      text-transform: uppercase;
+    }
+
     .recensione{
+      padding-top: 5px;
       height: 50%;
       width: 100%;
-      overflow-y:scroll;
-      
+      overflow-y: auto;      
+
+      p{
+        ::-webkit-scrollbar-track {
+          background: red;  
+        }
+      }
+
+   
     }
   }
-  
 }
 </style>

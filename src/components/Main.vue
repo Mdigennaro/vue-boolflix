@@ -1,7 +1,10 @@
 <template>
   <main>
     
+    <h1>{{section}}</h1>
+
     <div class="container">
+
 
       <Compilation 
       v-for="item in listItem" 
@@ -28,7 +31,7 @@ export default {
 
   props:{
     listItem: Array,
-
+    section: String
   },
 
 
@@ -38,17 +41,25 @@ export default {
 </script>
 
 <style lang="scss">
+@import '~@fontsource/roboto-condensed/700.css';
 @import "../assets/style/mixins.scss";
+
 main{
-  height: 45%;
+  width: 70%;
+  margin: 0 auto;
+  text-align: start;
+  padding: 10px;
+
+  h1{
+    color: goldenrod;
+    font-family: 'Roboto Condensed', sans-serif;
+  }
   
   .container{
     width: 100%;
-    height:50%;
     @include flex-between;
     justify-content: flex-start;
     overflow: hidden;
-    overflow-x: scroll;
     padding: 10px;
   
   }
