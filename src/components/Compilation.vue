@@ -5,7 +5,8 @@
     <div class="flip-card">
       <div class="flip-card-inner">
         <div class="flip-card-front">
-          <img :src="`https://image.tmdb.org/t/p/w342/${item.poster_path}`" :alt="item.title || item.name">
+          <img v-if="item.poster_path === null" :src="`https://image.tmdb.org/t/p/w342/${item.backdrop_path}`" :alt="item.title || item.name">
+          <img v-else :src="`https://image.tmdb.org/t/p/w342/${item.poster_path}`" :alt="item.title || item.name">
         </div>
         <div class="flip-card-back">
 
@@ -60,7 +61,7 @@ export default {
   .flip-card {
     background-color: transparent;
     width: 175px;
-    height: 225px;
+    height: 220px;
     perspective: 1000px; 
   }
 

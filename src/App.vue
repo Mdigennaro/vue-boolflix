@@ -1,12 +1,14 @@
 <template>
   <div id="app">
+
     <Header @cercaFilm="cercaFilm" 
-    @selezioneGenere="selezioneGenere"
     />
-    <Main  :listItem="movie"
+
+
+    <Main v-if="movie.length > 0" :listItem="movie"
     section="Film"
     />
-    <Main :listItem="tv"
+    <Main v-if="tv.length > 0" :listItem="tv"
     section="Serie Tv"
     />
   </div>
@@ -43,7 +45,6 @@ export default {
         query: 'ritorno al futuro',
       },
 
-      filmInserito:'',
     }
   },
 
@@ -61,17 +62,21 @@ export default {
     },
 
 
-    cercaFilm(nomeFilm){
+    cercaFilm(nomeFilm, genere){
+      this.movie = [];
+      this.tv = [];
+
       this.apiParams.query = nomeFilm;
       console.log(nomeFilm);
-      this.getApi('movie');
-      this.getApi('tv');
+      if (genere === '') {
+        this.getApi('movie');
+        this.getApi('tv');
+      }else{
+        this.getApi(genere);
+      }
     },    
 
-    selezioneGenere(genere){
-      this.genere = genere;
-      console.log('selezione',genere);
-    },    
+       
         
   },
 
@@ -89,8 +94,9 @@ export default {
     min-height: 100vh;
     background-color: black;
     
-    .hid{
-      display: block;
+    .container{
+      display: flex;
+      align-items: center;
     }
 
   }

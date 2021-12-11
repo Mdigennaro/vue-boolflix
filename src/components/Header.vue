@@ -9,19 +9,19 @@
     <div class="h-right">
       <select
       v-model="genere" 
-      @change="$emit('selezioneGenere', genere)">
+      @change="$emit('cercaFilm', nomeFilm, genere)">
         <option value="" selected>Film e Serie TV</option>
-        <option value="film">Film</option>
-        <option value="serie">Serie TV</option>
+        <option value="movie">Film</option>
+        <option value="tv">Serie TV</option>
       </select>
       <input 
       type="text" 
       placeholder="Ricerca film"
       v-model="nomeFilm"
-      @keyup.enter="$emit('cercaFilm', nomeFilm)"
+      @keyup.enter="$emit('cercaFilm', nomeFilm, genere)"
       >
       <button 
-      @click="$emit('cercaFilm', nomeFilm)"
+      @click="$emit('cercaFilm', nomeFilm, genere)"
       >
       Search
       </button>

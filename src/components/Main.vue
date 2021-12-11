@@ -45,7 +45,7 @@ export default {
 @import "../assets/style/mixins.scss";
 
 main{
-  width: 70%;
+  width: 1015px;
   margin: 0 auto;
   text-align: start;
   padding: 10px;
@@ -61,6 +61,7 @@ main{
     justify-content: flex-start;
     overflow: hidden;
     padding: 10px;
+    overflow-x: auto;
   
   }
   
