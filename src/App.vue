@@ -42,7 +42,7 @@ export default {
       apiParams:{
         api_key: '84bd9ebc42509041ef2d7fe87c3946c6',
         language: 'it-IT',
-        query: 'ritorno al futuro',
+        query: '',
       },
 
     }
@@ -50,8 +50,16 @@ export default {
 
 
   methods:{
-    getApi(type){
-      axios.get(this.apiUrl+type, {params: this.apiParams})
+    getApi(type, tendenza = false){
+
+      let apiUrlGenerato = '';
+      if(!tendenza){
+        apiUrlGenerato = this.apiUrl+type;
+      }else{
+        apiUrlGenerato =`https://api.themoviedb.org/3/${type}/popular`
+      }
+
+      axios.get(apiUrlGenerato, {params: this.apiParams})
         .then(r =>{
           this[type] = r.data.results;
           console.log('type',this[type]);
@@ -81,8 +89,8 @@ export default {
   },
 
   mounted(){
-    this.getApi('movie');
-    this.getApi('tv');
+    this.getApi('movie', true);
+    this.getApi('tv', true);
   }
 }
 </script>
@@ -94,10 +102,5 @@ export default {
     min-height: 100vh;
     background-color: black;
     
-    .container{
-      display: flex;
-      align-items: center;
-    }
-
   }
 </style>
